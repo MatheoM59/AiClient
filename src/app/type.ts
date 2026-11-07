@@ -1,12 +1,10 @@
-import { Time } from '@angular/common';
-
 export enum MessageRole {
   USER = 'user',
   MODEL = 'model',
 }
 
 export type Message = {
-  id: number;
+  id: string;
   role: MessageRole;
   content: string;
   timestamp: Timestamp;
@@ -15,10 +13,14 @@ export type Message = {
 export type MessageHistory = Message[];
 
 export type Conversation = {
-  id: number;
+  id: string;
   title: string;
-  createAt: Timestamp;
-  messages: Message[];
+  createdAt: Timestamp;
+  messages: MessageHistory;
+};
+
+export type User = {
+  name: string;
 };
 
 //Special Type
