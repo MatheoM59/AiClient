@@ -1,0 +1,57 @@
+<div
+  class="flex w-full max-w-form flex-col gap-6 rounded-card border border-border bg-surface p-7 shadow-card"
+>
+  <div class="flex items-center gap-2">
+    <span
+      class="grid size-7 place-items-center rounded-control bg-primary font-mono text-xs font-bold text-on-primary"
+      aria-hidden="true"
+      >Ac</span
+    >
+    <span class="font-bold text-foreground">AiClient</span>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h1 class="text-2xl leading-tight font-bold text-balance">
+      Bienvenue. Comment vous appelez-vous ?
+    </h1>
+    <p class="text-foreground-muted">
+      Votre nom sert à retrouver vos conversations. Chaque nom a les siennes, enregistrées dans ce
+      navigateur.
+    </p>
+  </div>
+
+  <form class="flex flex-col gap-5" [formGroup]="userForm" (ngSubmit)="login()">
+    <div class="flex flex-col gap-1.5">
+      <label class="text-sm font-semibold" for="userInput">Nom d'utilisateur</label>
+      <input
+        type="text"
+        id="userInput"
+        formControlName="userName"
+        placeholder="Saisir votre nom"
+        autocomplete="username"
+        class="w-full rounded-control border bg-background px-3 py-2 text-foreground placeholder:text-foreground-muted focus:outline-none focus:ring-3"
+        [class]="
+          showErrors()
+            ? 'border-danger focus:border-danger focus:ring-danger-soft'
+            : 'border-border-strong focus:border-primary focus:ring-primary-soft'
+        "
+        [attr.aria-invalid]="showErrors()"
+        aria-describedby="userInputError"
+      />
+
+      <p id="userInputError" class="min-h-5 text-sm text-danger" aria-live="polite">
+        @if (showErrors()) {
+          @if (userName.hasError('required')) {
+            Le nom est obligatoire.
+          } @else if (userName.hasError('minlength')) {
+            Le nom doit contenir au moins 2 caractères.
+          } @else if (userName.hasError('maxlength')) {
+            Le nom doit contenir au plus 30 caractères.
+          }
+        }
+      </p>
+    </div>
+
+    <app-button type="submit" text="Commencer" [disabled]="userForm.invalid" />
+  </form>
+</div>

@@ -1,0 +1,13 @@
+<button
+  [type]="type()"
+  [disabled]="disabled()"
+  (click)="clicked.emit()"
+  class="w-full cursor-pointer rounded-control px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+  [class]="
+    variant() === 'primary'
+      ? 'bg-primary text-on-primary enabled:hover:bg-primary-hover'
+      : 'border border-border-strong bg-surface text-foreground enabled:hover:bg-surface-muted'
+  "
+>
+  {{ text() }}
+</button>
