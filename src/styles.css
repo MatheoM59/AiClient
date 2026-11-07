@@ -1,2 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  /* couleur principale : violet */
+  --color-primary-50: #f5f3ff;
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-950: #2e1065;
+
+  --radius-bubble: 8px;
+}
+
+/* Gris : palette zinc de Tailwind (bg-zinc-50, text-zinc-900, border-zinc-200…) */
+/* Réponses de l'IA : pleine largeur */
+
+/* src/index.html, dans <head> : */
+/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"> */
