@@ -9,4 +9,5 @@ export const routes: Routes = [
     component: ConversationsListPage,
   },
   { path: 'conversation/:id', component: Conversation },
+  { path: '**', component: HomePage },
 ];
