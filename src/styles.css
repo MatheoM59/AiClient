@@ -1,21 +1,189 @@
 @import 'tailwindcss';
 
+/*
+ * AiClient design system
+ * ----------------------
+ * 1. Raw values per theme live in CSS variables (--app-*), light on :root, dark on .dark.
+ * 2. @theme inline maps them to Tailwind tokens, so each one becomes utilities:
+ *    --color-surface  ->  bg-surface, text-surface, border-surface…
+ * 3. In templates, use the semantic names (bg-surface, text-foreground-muted…),
+ *    never raw palette colors (bg-zinc-100, text-violet-600…): the dark theme then works for free.
+ *
+ * Dark theme: add the "dark" class on <html>. Variant available as dark:… if a one-off tweak is needed.
+ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Light theme (default) ---------- */
+:root {
+  /* Surfaces */
+  --app-background: #fafafa; /* page background */
+  --app-surface: #ffffff; /* cards, header, composer, inputs */
+  --app-surface-muted: #f4f4f5; /* hover, table headers, inline code */
+  --app-border: #e4e4e7; /* default borders and dividers */
+  --app-border-strong: #d4d4d8; /* inputs at rest, emphasized borders */
+
+  /* Text */
+  --app-foreground: #18181b; /* main text */
+  --app-foreground-muted: #71717a; /* dates, hints, secondary text */
+
+  /* Brand */
+  --app-primary: #7c3aed; /* primary buttons, links, user bubbles */
+  --app-primary-hover: #6d28d9; /* primary on hover */
+  --app-on-primary: #ffffff; /* text/icons on primary */
+  --app-primary-soft: #f5f3ff; /* light tint: avatar, selected item */
+  --app-on-primary-soft: #6d28d9; /* text on primary-soft */
+  --app-focus-ring: #8b5cf6; /* keyboard focus outline */
+
+  /* Chat */
+  --app-user-bubble: #7c3aed;
+  --app-on-user-bubble: #ffffff;
+  --app-assistant-bubble: #ffffff; /* only if AI answers are put in a bubble */
+  --app-search-highlight: #ede9fe; /* <mark> for search results */
+  --app-on-search-highlight: #5b21b6;
+
+  /* Feedback */
+  --app-danger: #dc2626; /* errors: text, border */
+  --app-danger-soft: #fef2f2; /* error box background */
+  --app-success: #16a34a; /* "Copied", success messages */
+
+  /* Code blocks (dark in both themes) */
+  --app-code-background: #09090b;
+  --app-code-header: #18181b;
+  --app-code-border: #27272a;
+  --app-code-foreground: #f4f4f5;
+  --app-code-muted: #a1a1aa; /* language label, copy button */
+  --app-syntax-keyword: #f0abfc;
+  --app-syntax-string: #86efac;
+  --app-syntax-function: #7dd3fc;
+  --app-syntax-number: #fdba74;
+  --app-syntax-comment: #71717a;
+
+  color-scheme: light;
+}
+
+/* ---------- Dark theme ---------- */
+.dark {
+  --app-background: #09090b;
+  --app-surface: #18181b;
+  --app-surface-muted: #27272a;
+  --app-border: #27272a;
+  --app-border-strong: #3f3f46;
+
+  --app-foreground: #f4f4f5;
+  --app-foreground-muted: #a1a1aa;
+
+  --app-primary: #7c3aed;
+  --app-primary-hover: #8b5cf6;
+  --app-on-primary: #ffffff;
+  --app-primary-soft: #2e1065;
+  --app-on-primary-soft: #c4b5fd;
+  --app-focus-ring: #a78bfa;
+
+  --app-user-bubble: #7c3aed;
+  --app-on-user-bubble: #ffffff;
+  --app-assistant-bubble: #18181b;
+  --app-search-highlight: #4c1d95;
+  --app-on-search-highlight: #ede9fe;
+
+  --app-danger: #f87171;
+  --app-danger-soft: #450a0a;
+  --app-success: #4ade80;
+
+  --app-code-background: #09090b;
+  --app-code-header: #18181b;
+  --app-code-border: #3f3f46;
+  --app-code-foreground: #f4f4f5;
+  --app-code-muted: #a1a1aa;
+
+  color-scheme: dark;
+}
+
+/* ---------- Tailwind tokens (theme-aware colors) ---------- */
+@theme inline {
+  --color-background: var(--app-background);
+  --color-surface: var(--app-surface);
+  --color-surface-muted: var(--app-surface-muted);
+  --color-border: var(--app-border);
+  --color-border-strong: var(--app-border-strong);
+
+  --color-foreground: var(--app-foreground);
+  --color-foreground-muted: var(--app-foreground-muted);
+
+  --color-primary: var(--app-primary);
+  --color-primary-hover: var(--app-primary-hover);
+  --color-on-primary: var(--app-on-primary);
+  --color-primary-soft: var(--app-primary-soft);
+  --color-on-primary-soft: var(--app-on-primary-soft);
+  --color-focus-ring: var(--app-focus-ring);
+
+  --color-user-bubble: var(--app-user-bubble);
+  --color-on-user-bubble: var(--app-on-user-bubble);
+  --color-assistant-bubble: var(--app-assistant-bubble);
+  --color-search-highlight: var(--app-search-highlight);
+  --color-on-search-highlight: var(--app-on-search-highlight);
+
+  --color-danger: var(--app-danger);
+  --color-danger-soft: var(--app-danger-soft);
+  --color-success: var(--app-success);
+
+  --color-code-background: var(--app-code-background);
+  --color-code-header: var(--app-code-header);
+  --color-code-border: var(--app-code-border);
+  --color-code-foreground: var(--app-code-foreground);
+  --color-code-muted: var(--app-code-muted);
+  --color-syntax-keyword: var(--app-syntax-keyword);
+  --color-syntax-string: var(--app-syntax-string);
+  --color-syntax-function: var(--app-syntax-function);
+  --color-syntax-number: var(--app-syntax-number);
+  --color-syntax-comment: var(--app-syntax-comment);
+}
+
+/* ---------- Tailwind tokens (same in both themes) ---------- */
 @theme {
+  /* Fonts -> font-sans, font-mono (loaded in src/index.html) */
   --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-  /* couleur principale : violet */
-  --color-primary-50: #f5f3ff;
-  --color-primary-400: #a78bfa;
-  --color-primary-500: #8b5cf6;
-  --color-primary-600: #7c3aed;
-  --color-primary-950: #2e1065;
+  /* Radius -> rounded-control, rounded-card, rounded-bubble, rounded-code */
+  --radius-control: 6px; /* buttons, inputs, chips */
+  --radius-card: 8px; /* cards, conversation items, error box */
+  --radius-bubble: 8px; /* chat bubbles, composer */
+  --radius-code: 6px; /* code blocks, tables */
 
-  --radius-bubble: 8px;
+  /* Widths -> max-w-chat, max-w-form */
+  --container-chat: 760px; /* conversation list and thread column */
+  --container-form: 420px; /* username card on the home page */
+
+  /* Shadows -> shadow-card */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px -4px rgb(0 0 0 / 0.08);
+
+  /* Animations -> animate-typing-dot (the 3 dots while the AI answers) */
+  --animate-typing-dot: typing-dot 1.2s ease-in-out infinite;
+
+  @keyframes typing-dot {
+    0%,
+    80%,
+    100% {
+      opacity: 0.25;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
 }
 
-/* Gris : palette zinc de Tailwind (bg-zinc-50, text-zinc-900, border-zinc-200…) */
-/* Réponses de l'IA : pleine largeur */
+/* ---------- Base styles ---------- */
+@layer base {
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
 
-/* src/index.html, dans <head> : */
-/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"> */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-focus-ring;
+  }
+
+  mark {
+    @apply rounded-sm bg-search-highlight px-0.5 font-semibold text-on-search-highlight;
+  }
+}
