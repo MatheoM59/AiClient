@@ -1,60 +1,73 @@
 # AiClient
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.6.
+A ChatGPT-like web client built with Angular for the JavaScript frameworks course. It runs entirely in the browser: no backend, no database.
 
-## Development server
+> 🚧 Work in progress. This README is updated as the project evolves.
 
-To start a local development server, run:
+## Tech stack
 
-```bash
-ng serve
-```
+| Tool | Version | Purpose |
+| --- | --- | --- |
+| [Angular](https://angular.dev) | 22 | Front-end framework (client-side single-page app) |
+| [Tailwind CSS](https://tailwindcss.com) | 4 | Utility-first styling (via PostCSS) |
+| [Prettier](https://prettier.io) | 3 | Code formatting |
+| [Vitest](https://vitest.dev) | 5 | Unit tests |
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Prerequisites
 
-## Code scaffolding
+- Node.js (recent LTS version)
+- npm 11+
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Getting started
 
 ```bash
-ng generate --help
+npm install
+npm start
 ```
 
-## Building
+Then open `http://localhost:4200/`.
 
-To build the project run:
+## Available scripts
 
-```bash
-ng build
+| Command | Description |
+| --- | --- |
+| `npm start` | Start the dev server on `http://localhost:4200/` |
+| `npm run build` | Production build in `dist/` |
+| `npm run watch` | Development build in watch mode |
+| `npm test` | Run unit tests (Vitest) |
+| `npm run format` | Format every `.ts`, `.html` and `.css` file in `src/` with Prettier |
+
+## Configuration
+
+### Tailwind CSS
+
+Tailwind v4 is plugged into the Angular build through PostCSS:
+
+- [`.postcssrc.json`](.postcssrc.json) enables the `@tailwindcss/postcss` plugin
+- [`src/styles.css`](src/styles.css) imports Tailwind with `@import 'tailwindcss';`
+
+Utility classes can be used directly in templates:
+
+```html
+<h1 class="text-3xl font-bold text-blue-600">AI Client</h1>
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+To customize the theme (colors, fonts…), use an `@theme { ... }` block in `src/styles.css` (there is no `tailwind.config.js` in v4).
 
-## Running unit tests
+## Project structure
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+```
+src/
+├── app/
+│   ├── app.ts                 # Root component
+│   ├── app.html / app.css     # Root component template and styles
+│   ├── app.routes.ts          # Routes
+│   └── app.config.ts          # Application providers
+├── index.html
+├── main.ts                    # Browser entry point
+└── styles.css                 # Global styles + Tailwind import
 ```
 
-## Running end-to-end tests
+## Features
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# AiClient
+_Coming soon._
