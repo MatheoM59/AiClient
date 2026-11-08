@@ -11,6 +11,6 @@ export const routes: Routes = [
     component: ConversationsListPage,
     canActivate: [loggedGuard],
   },
-  { path: 'conversations/:id', component: Conversation, canActivate: [loggedGuard] },
+  { path: 'conversation/:id', component: Conversation, canActivate: [loggedGuard] },
   { path: '**', redirectTo: '/' },
 ];

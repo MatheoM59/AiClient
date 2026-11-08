@@ -15,7 +15,6 @@ export class Button {
   shape = input<'default' | 'round'>('default');
   disabled = input(false);
   text = input.required<string>();
-  // Accessible name, for buttons whose text alone is not explicit (e.g. an initial)
   ariaLabel = input<string>();
   clicked = output<void>();
 
