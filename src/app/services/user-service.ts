@@ -1,5 +1,4 @@
 import { Service, signal, computed, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import type { User, Users } from '../type';
 
 const STORAGE_USER = 'user';

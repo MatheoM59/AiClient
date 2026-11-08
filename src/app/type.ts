@@ -18,6 +18,7 @@ export type Conversation = {
   createdAt: Timestamp;
   messages: MessageHistory;
 };
+export type Conversations = Conversation[];
 
 export type User = {
   name: string;
