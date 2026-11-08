@@ -23,5 +23,7 @@ export type User = {
   name: string;
 };
 
+export type Users = User[];
+
 //Special Type
 export type Timestamp = number;

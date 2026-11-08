@@ -1,0 +1,40 @@
+<div
+  class="w-full border-b border-border-strong bg-surface px-4 py-3 flex flex-row justify-between items-center"
+>
+  <div class="flex flex-row items-center gap-2">
+    <span
+      class="grid size-7 place-items-center rounded-control bg-primary font-mono text-xs font-bold text-on-primary"
+      aria-hidden="true"
+      >Ac</span
+    >
+    <span class="font-bold text-foreground">AiClient</span>
+  </div>
+  @if (service.isLoggedIn()) {
+    <div class="relative flex flex-row items-center gap-3">
+      <button
+        aria-label="Menu utilisateurs"
+        class="rounded-full bg-primary-soft text-primary size-9 cursor-pointer"
+        type="button"
+        (click)="openClose()"
+      >
+        {{ service.currentUser()?.name.slice(0, 1).toUpperCase() }}
+      </button>
+      <p class="font-bold">{{ service.currentUser()?.name }}</p>
+      @if (isOpen()) {
+        <div
+          class="absolute top-full right-0 mt-2 z-10 w-56 bg-surface border border-border rounded-card shadow-card"
+        >
+          @for (user of userList(); track user.name) {
+            <button
+              class="p-2 bg-primary-soft text-foreground-muted w-full border-b border-border"
+              (click)="change(user.name)"
+            >
+              {{ user.name }}
+            </button>
+          }
+          <button class="w-full p-2 bg-danger-soft" (click)="logout()">Se déconecter</button>
+        </div>
+      }
+    </div>
+  }
+</div>
