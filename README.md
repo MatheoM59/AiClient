@@ -10,6 +10,7 @@ A ChatGPT-like web client built with Angular for the JavaScript frameworks cours
 | --- | --- | --- |
 | [Angular](https://angular.dev) | 22 | Front-end framework (client-side single-page app) |
 | [Tailwind CSS](https://tailwindcss.com) | 4 | Utility-first styling (via PostCSS) |
+| [Lucide](https://lucide.dev/guide/packages/angular) (`@lucide/angular`) | 1 | Icons, as standalone Angular components |
 | [Prettier](https://prettier.io) | 3 | Code formatting |
 | [Vitest](https://vitest.dev) | 5 | Unit tests |
 

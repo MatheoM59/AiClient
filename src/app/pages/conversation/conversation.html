@@ -1,1 +1,17 @@
-<p>conversation works!</p>
+<div>
+  <div class="flex flex-row items-center gap-4 border-b border-border bg-surface px-4 py-3">
+    <button
+      type="button"
+      (click)="goConversationsList()"
+      class="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-control px-2 py-1 text-sm font-medium text-foreground-muted transition-colors hover:bg-surface-muted hover:text-foreground"
+    >
+      <svg lucideArrowLeft class="size-4" aria-hidden="true"></svg>
+      Conversations
+    </button>
+    <div class="flex min-w-0 flex-col">
+      <h2 class="truncate font-bold">{{ currentConv()?.title }}</h2>
+      <p class="text-xs text-foreground-muted">Créer le {{ currentConv()?.createdAt }}</p>
+    </div>
+  </div>
+  <app-message-form (messageSent)="sent($event)" />
+</div>

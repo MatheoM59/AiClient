@@ -1,0 +1,8 @@
+<div>
+  <form [formGroup]="messageForm" (ngSubmit)="send()">
+    <textarea formControlName="message"></textarea>
+    <button type="submit" aria-label="Envoyer" [disabled]="setDisabled()">
+      <svg lucideArrowUp class="size-4" aria-hidden="true"></svg>
+    </button>
+  </form>
+</div>

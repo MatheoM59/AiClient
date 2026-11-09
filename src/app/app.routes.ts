@@ -3,6 +3,7 @@ import { HomePage } from './pages/home-page/home-page';
 import { ConversationsListPage } from './pages/conversations-list-page/conversations-list-page';
 import { Conversation } from './pages/conversation/conversation';
 import { loggedGuard } from './guards/logged-guard';
+import { conversationIdGuard } from './guards/conversation-id-guard';
 import { guestGuard } from './guards/guest-guard';
 export const routes: Routes = [
   { path: '', component: HomePage, canActivate: [guestGuard] },
@@ -11,6 +12,10 @@ export const routes: Routes = [
     component: ConversationsListPage,
     canActivate: [loggedGuard],
   },
-  { path: 'conversation/:id', component: Conversation, canActivate: [loggedGuard] },
+  {
+    path: 'conversations/:id',
+    component: Conversation,
+    canActivate: [loggedGuard, conversationIdGuard],
+  },
   { path: '**', redirectTo: '/' },
 ];

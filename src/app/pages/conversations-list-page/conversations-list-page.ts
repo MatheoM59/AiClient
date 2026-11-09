@@ -14,6 +14,6 @@ export class ConversationsListPage {
   private router = inject(Router);
   createConversation(): void {
     const id = this.service.createConversation();
-    this.router.navigate(['/conversation', id]);
+    this.router.navigate(['/conversations', id]);
   }
 }
